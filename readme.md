@@ -3,6 +3,9 @@
 ## Description:
 This Cloudflare Worker script validates a list of email addresses by checking their DNS records using an external API.
 
+## Worker Details:
+This Cloudflare Worker script utilizes ApyHub's Email DNS API for validating email addresses. You can access the API at [ApyHub's Email DNS API](https://apyhub.com/utility/validator-dns-email).
+
 ## Functionality:
 The main function in this script processes a list of email addresses, validates each email address using an external API, and then generates a CSV file with the results.
 
