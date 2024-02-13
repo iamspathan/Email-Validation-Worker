@@ -30,25 +30,16 @@ export default {
         let invalidEmails: string[] = [];
 
         // Process emails in batches of 10
-        for (let i = 0; i < emails.length; i += 10) {
-            const batch = emails.slice(i, i + 10);
-            const batchResults = [];
-
-            for (const email of batch) {
-                const result = await this.validateEmail(email);
-                batchResults.push(result);
-
-                // Wait for 1 second before making the next API call
-                await new Promise(resolve => setTimeout(resolve, 1000));
+        for (let i = 0; i < emails.length; i++) {
+            const email = emails[i];
+            const result : any = await this.validateEmail(email);
+            if (result.data) {
+                validEmails.push(email);
+            } else {
+                invalidEmails.push(email);
             }
-
-            batchResults.forEach((email: any, index) => {
-                if (email.data) {
-                    validEmails.push(batch[index]);
-                } else {
-                    invalidEmails.push(batch[index]);
-                }
-            });
+            // Wait for 1 second before processing the next email
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
 
 		let csvContent = 'Emails,Invalid Emails\n'; emails.forEach((email, index) => {csvContent += `${email},${invalidEmails[index]}\n`;
@@ -69,7 +60,7 @@ export default {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'apy-token': 'YOUR-SECRET-APY-TOKEN'
+                'apy-token': 'APY0fp0wB7eK6PgABfXjXkiYb5jFyBusSJGpUinCDf2kmyNRO7w5YpwDUUbYJ6agMXc'
             },
 			
 			body: JSON.stringify({email})
