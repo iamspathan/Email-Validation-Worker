@@ -60,7 +60,7 @@ export default {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'apy-token': 'APY0fp0wB7eK6PgABfXjXkiYb5jFyBusSJGpUinCDf2kmyNRO7w5YpwDUUbYJ6agMXc'
+                'apy-token': 'YOUR-SECRET-APY-TOEKN'
             },
 			
 			body: JSON.stringify({email})
